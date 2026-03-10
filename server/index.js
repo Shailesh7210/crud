@@ -1,1 +1,15 @@
-console.log("hello world")
+const express = require ('express')
+const databaseConnection = require ('./databse.js')
+
+const app = express();
+
+app.use(express.json());
+app.get('/', (req,res)=>{
+    res.send('server is running')
+})
+
+databaseConnection();
+app.listen(3080,()=>{
+    console.log("port is listning on port 3080")
+    
+})
