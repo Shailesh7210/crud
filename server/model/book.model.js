@@ -23,7 +23,7 @@ const bookSchema = new mongoose.Schema({
     }
 }, {timestamps: true})
 
-const Book = mongooae.model("book", bookSchema)
+const Book = mongoose.model("book", bookSchema)
 
 module.export = {Book}
 
