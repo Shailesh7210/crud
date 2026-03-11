@@ -18,7 +18,7 @@ const handleBookStoreController = async (req, res) => {
 
     const bookAdd = await Book.create(body);
     if(bookAdd){
-        return res.status(201).json({message: "Book is added", success: true})
+        return res.status(201).json({message: "Book is added", success: true, Id:bookAdd})
     }
 
     return res.status(201).json({

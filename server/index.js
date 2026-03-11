@@ -2,8 +2,10 @@ const express = require('express');
 const databaseConnection = require('./databse');
 const bookRouter = require('./routes/book.route');
 
-const app = express();
 
+const cors = require('cors')
+const app = express();
+app.use(cors());
 app.use(express.json());
 
 app.get('/', (req, res) => {
