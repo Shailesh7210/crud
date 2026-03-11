@@ -21,10 +21,36 @@ const Home = () => {
     }));
   };
 
+  const [bookList, setBookList] = useState([])
+
+  const getAllbookList = async ()=>{
+    try {
+      const {data}= await BookbaseUrl.get("./booklists")
+      setBookList(data?.bookList)
+    } catch (error) {
+      console.log(error)
+    }
+  }
+
   const handleSubmit = async () => {
     try {
-      const data = await BookbaseUrl.post("/addbook", bookForm);
-      console.log("Response:", data);
+      if(!bookForm.BookName || !bookForm.BookTitle || !bookForm.Author || !bookForm.SellingPrice){
+        alert("All fields are required");
+      }
+
+      const {data} = await BookbaseUrl.post("/addbook", bookForm);
+
+      if(data?.success){
+        alert(data?.Message)
+        setBookForm({
+    BookName: "",
+    BookTitle: "",
+    Author: "",
+    SellingPrice: "",
+    PublishDate: ""
+  })
+      }
+      console.log(data);
     } catch (error) {
       console.log(error);
     }

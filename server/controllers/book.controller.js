@@ -34,4 +34,14 @@ const handleBookStoreController = async (req, res) => {
   }
 };
 
-module.exports = { handleBookStoreController };
+
+const handleBookSListController= async(req,res)=>{
+  try {
+    const bookList = await Book.find({});
+    return res.status(201).json({Message: "All book fetched Successfully", Success: true,  TotalCount: bookList.length, BookList: bookList});
+  } catch (error) {
+      return res.status(400).json({Message: error.message, Success: false});
+
+  }
+}
+module.exports = { handleBookStoreController, handleBookSListController };
